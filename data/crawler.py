@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import shutil
 import urllib
+# import urllib.request
 from time import sleep
 
 # queryList = ['bmw2series','bmw3series','bmw4series','bmw5series','bmw6series','bmw7series']

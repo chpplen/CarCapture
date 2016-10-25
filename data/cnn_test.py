@@ -23,8 +23,8 @@ from keras.utils import np_utils
 from process import load
 
 batch_size = 32
-nb_classes = 4
-nb_epoch = 400
+nb_classes = 11
+nb_epoch = 10
 data_augmentation = True
 
 # input image dimensions

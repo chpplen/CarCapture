@@ -47,157 +47,212 @@ def load():
 	# seriesList1 = ['bmw1series','bmw2series','bmw3series','bmw4series','bmw5series','bmw6series','bmw7series']
 	# seriesList2 = ['bmwx1','bmwx3','bmwx4','bmwx5','bmwx6']
 	# seriesList3 = ['bmwm2','bmwm3','bmwm4','bmwm5','bmwm6']
-	seriesList1 = ['bmw']
-	seriesList2 = ['benz']
-	seriesList3 = ['lexus']
-	seriesList4 = ['audi']
+	# seriesList1 = ['bmw']
+	# seriesList2 = ['benz']
+	# seriesList3 = ['lexus']
+	# seriesList4 = ['audi']
+
+	seriesList = [
+					['A1'],
+					['A3'],
+					['A4'],
+					['A5'],
+					['A6'],
+					['A7'],
+					['A8'],
+					['Q5'],
+					['Q7'],
+					['R8'],
+					['TT']
+				 ]
 
 	thres = 0.3
-	for series in range(len(seriesList1)):
-		for response in os.walk("car/" + seriesList1[series] + "/"):
-			# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
-			for name in response[2]:
-				im = Image.open( "car/" + seriesList1[series] + "/" + str(name) )
-				width = 32
-				height = 32
+	answer = 0
+	for audi_series in seriesList:
+		for series in range(len(audi_series)):
+			for response in os.walk("audi_series/" + audi_series[series] + "/"):
+				# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
+				for name in response[2]:
+					im = Image.open( "audi_series/" + audi_series[series] + "/" + str(name) )
+					width = 32
+					height = 32
 
-				nim = im.resize( (width, height), Image.BILINEAR )
+					nim = im.resize( (width, height), Image.BILINEAR )
 
-				R = []
-				G = []
-				B = []
-				try:
-					for i in range(nim.size[0]):
-						r = []
-						g = []
-						b = []
-						for j in range(nim.size[1]):
-							r.append(nim.getpixel((i,j))[0])
-							g.append(nim.getpixel((i,j))[1])
-							b.append(nim.getpixel((i,j))[2])
-						R.append(r)
-						G.append(g)
-						B.append(b)
+					R = []
+					G = []
+					B = []
+					try:
+						for i in range(nim.size[0]):
+							r = []
+							g = []
+							b = []
+							for j in range(nim.size[1]):
+								r.append(nim.getpixel((i,j))[0])
+								g.append(nim.getpixel((i,j))[1])
+								b.append(nim.getpixel((i,j))[2])
+							R.append(r)
+							G.append(g)
+							B.append(b)
 
-					X = [R,G,B]
-					if random.random() > thres: 
-						train_x.append(X)
-						train_y.append(0)
-					else:
-						test_x.append(X)
-						test_y.append(0)
-				except Exception:
-					print "falied:" + name
+						X = [R,G,B]
+						if random.random() > thres: 
+							train_x.append(X)
+							train_y.append(answer)
+						else:
+							test_x.append(X)
+							test_y.append(answer)
+					except Exception:
+						print "falied:" + name
+		answer += 1
+
+
+
+	# for series in range(len(seriesList1)):
+	# 	for response in os.walk("car/" + seriesList1[series] + "/"):
+	# 		# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
+	# 		for name in response[2]:
+	# 			im = Image.open( "car/" + seriesList1[series] + "/" + str(name) )
+	# 			width = 32
+	# 			height = 32
+
+	# 			nim = im.resize( (width, height), Image.BILINEAR )
+
+	# 			R = []
+	# 			G = []
+	# 			B = []
+	# 			try:
+	# 				for i in range(nim.size[0]):
+	# 					r = []
+	# 					g = []
+	# 					b = []
+	# 					for j in range(nim.size[1]):
+	# 						r.append(nim.getpixel((i,j))[0])
+	# 						g.append(nim.getpixel((i,j))[1])
+	# 						b.append(nim.getpixel((i,j))[2])
+	# 					R.append(r)
+	# 					G.append(g)
+	# 					B.append(b)
+
+	# 				X = [R,G,B]
+	# 				if random.random() > thres: 
+	# 					train_x.append(X)
+	# 					train_y.append(0)
+	# 				else:
+	# 					test_x.append(X)
+	# 					test_y.append(0)
+	# 			except Exception:
+	# 				print "falied:" + name
 
 				
 
-	for series in range(len(seriesList2)):
-		for response in os.walk("car/" + seriesList2[series] + "/"):
-			# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
-			for name in response[2]:
-				im = Image.open( "car/" + seriesList2[series] + "/" + str(name) )
-				width = 32
-				height = 32
+	# for series in range(len(seriesList2)):
+	# 	for response in os.walk("car/" + seriesList2[series] + "/"):
+	# 		# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
+	# 		for name in response[2]:
+	# 			im = Image.open( "car/" + seriesList2[series] + "/" + str(name) )
+	# 			width = 32
+	# 			height = 32
 
-				nim = im.resize( (width, height), Image.BILINEAR )
+	# 			nim = im.resize( (width, height), Image.BILINEAR )
 
-				R = []
-				G = []
-				B = []
-				try:
-					for i in range(nim.size[0]):
-						r = []
-						g = []
-						b = []
-						for j in range(nim.size[1]):
-							r.append(nim.getpixel((i,j))[0])
-							g.append(nim.getpixel((i,j))[1])
-							b.append(nim.getpixel((i,j))[2])
-						R.append(r)
-						G.append(g)
-						B.append(b)
+	# 			R = []
+	# 			G = []
+	# 			B = []
+	# 			try:
+	# 				for i in range(nim.size[0]):
+	# 					r = []
+	# 					g = []
+	# 					b = []
+	# 					for j in range(nim.size[1]):
+	# 						r.append(nim.getpixel((i,j))[0])
+	# 						g.append(nim.getpixel((i,j))[1])
+	# 						b.append(nim.getpixel((i,j))[2])
+	# 					R.append(r)
+	# 					G.append(g)
+	# 					B.append(b)
 
-					X = [R,G,B]
-					if random.random() > thres: 
-						train_x.append(X)
-						train_y.append(1)
-					else:
-						test_x.append(X)
-						test_y.append(1)
-				except Exception:
-					print "falied:" + name
+	# 				X = [R,G,B]
+	# 				if random.random() > thres: 
+	# 					train_x.append(X)
+	# 					train_y.append(1)
+	# 				else:
+	# 					test_x.append(X)
+	# 					test_y.append(1)
+	# 			except Exception:
+	# 				print "falied:" + name
 
-	for series in range(len(seriesList3)):
-		for response in os.walk("car/" + seriesList3[series] + "/"):
-			# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
-			for name in response[2]:
-				im = Image.open( "car/" + seriesList3[series] + "/" + str(name) )
-				width = 32
-				height = 32
+	# for series in range(len(seriesList3)):
+	# 	for response in os.walk("car/" + seriesList3[series] + "/"):
+	# 		# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
+	# 		for name in response[2]:
+	# 			im = Image.open( "car/" + seriesList3[series] + "/" + str(name) )
+	# 			width = 32
+	# 			height = 32
 
-				nim = im.resize( (width, height), Image.BILINEAR )
+	# 			nim = im.resize( (width, height), Image.BILINEAR )
 
-				R = []
-				G = []
-				B = []
-				try:
-					for i in range(nim.size[0]):
-						r = []
-						g = []
-						b = []
-						for j in range(nim.size[1]):
-							r.append(nim.getpixel((i,j))[0])
-							g.append(nim.getpixel((i,j))[1])
-							b.append(nim.getpixel((i,j))[2])
-						R.append(r)
-						G.append(g)
-						B.append(b)
+	# 			R = []
+	# 			G = []
+	# 			B = []
+	# 			try:
+	# 				for i in range(nim.size[0]):
+	# 					r = []
+	# 					g = []
+	# 					b = []
+	# 					for j in range(nim.size[1]):
+	# 						r.append(nim.getpixel((i,j))[0])
+	# 						g.append(nim.getpixel((i,j))[1])
+	# 						b.append(nim.getpixel((i,j))[2])
+	# 					R.append(r)
+	# 					G.append(g)
+	# 					B.append(b)
 
-					X = [R,G,B]
-					if random.random() > thres: 
-						train_x.append(X)
-						train_y.append(2)
-					else:
-						test_x.append(X)
-						test_y.append(2)
-				except Exception:
-					print "falied:" + name
+	# 				X = [R,G,B]
+	# 				if random.random() > thres: 
+	# 					train_x.append(X)
+	# 					train_y.append(2)
+	# 				else:
+	# 					test_x.append(X)
+	# 					test_y.append(2)
+	# 			except Exception:
+	# 				print "falied:" + name
 
-	for series in range(len(seriesList4)):
-		for response in os.walk("car/" + seriesList4[series] + "/"):
-			# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
-			for name in response[2]:
-				im = Image.open( "car/" + seriesList4[series] + "/" + str(name) )
-				width = 32
-				height = 32
+	# for series in range(len(seriesList4)):
+	# 	for response in os.walk("car/" + seriesList4[series] + "/"):
+	# 		# im = Image.open( "BMW/" + seriesList1[series] + "/" + str(response) ).convert('L')
+	# 		for name in response[2]:
+	# 			im = Image.open( "car/" + seriesList4[series] + "/" + str(name) )
+	# 			width = 32
+	# 			height = 32
 
-				nim = im.resize( (width, height), Image.BILINEAR )
+	# 			nim = im.resize( (width, height), Image.BILINEAR )
 
-				R = []
-				G = []
-				B = []
-				try:
-					for i in range(nim.size[0]):
-						r = []
-						g = []
-						b = []
-						for j in range(nim.size[1]):
-							r.append(nim.getpixel((i,j))[0])
-							g.append(nim.getpixel((i,j))[1])
-							b.append(nim.getpixel((i,j))[2])
-						R.append(r)
-						G.append(g)
-						B.append(b)
+	# 			R = []
+	# 			G = []
+	# 			B = []
+	# 			try:
+	# 				for i in range(nim.size[0]):
+	# 					r = []
+	# 					g = []
+	# 					b = []
+	# 					for j in range(nim.size[1]):
+	# 						r.append(nim.getpixel((i,j))[0])
+	# 						g.append(nim.getpixel((i,j))[1])
+	# 						b.append(nim.getpixel((i,j))[2])
+	# 					R.append(r)
+	# 					G.append(g)
+	# 					B.append(b)
 
-					X = [R,G,B]
-					if random.random() > thres: 
-						train_x.append(X)
-						train_y.append(3)
-					else:
-						test_x.append(X)
-						test_y.append(3)
-				except Exception:
-					print "falied:" + name
+	# 				X = [R,G,B]
+	# 				if random.random() > thres: 
+	# 					train_x.append(X)
+	# 					train_y.append(3)
+	# 				else:
+	# 					test_x.append(X)
+	# 					test_y.append(3)
+	# 			except Exception:
+	# 				print "falied:" + name
 
 	# for series in range(len(seriesList2)):
 	# 	for response in os.walk("BMW/" + seriesList2[series] + "/"):

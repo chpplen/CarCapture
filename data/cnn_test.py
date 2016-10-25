@@ -24,7 +24,7 @@ from process import load
 
 batch_size = 32
 nb_classes = 4
-nb_epoch = 1200
+nb_epoch = 400
 data_augmentation = True
 
 # input image dimensions
@@ -63,10 +63,10 @@ model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Dropout(0.25))
 
-model.add(Convolution2D(64, 3, 3))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
-model.add(Dropout(0.25))
+# model.add(Convolution2D(64, 3, 3))
+# model.add(Activation('relu'))
+# model.add(MaxPooling2D(pool_size=(2, 2)))
+# model.add(Dropout(0.25))
 
 model.add(Flatten())
 model.add(Dense(512))
